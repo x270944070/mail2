@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option go_package = "mail.user/userpb;userpb";
+
+package userpb;
+
+message UserNameRequest{
+  string userName = 1;
+}
+
+message EmailRequest{
+  string email = 1;
+}
+
+message UserMobileRequest{
+  string userMobile = 1;
+}
+
+
+message UserInfoResponse {
+  string userName = 1;
+  string email = 2;
+  string userMobile = 3;
+  string password = 4;
+  string nickName = 5;
+}
+
+
+service UserInfoService{
+
+  // 通过用户名查询用户信息
+  rpc findUserInfoByUserName (UserNameRequest) returns (UserInfoResponse) {}
+
+  // 通过邮箱查询用户信息
+  rpc findUserInfoByEmail (EmailRequest) returns (UserInfoResponse) {}
+
+  // 通过手机号查询用户信息
+  rpc findUserInfoByUserMobile (UserMobileRequest) returns (UserInfoResponse) {}
+
+
+}
+
+
+
